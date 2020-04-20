@@ -5,6 +5,7 @@ const express = require('express');
 const app = express();
 const cookieParser = require('cookie-parser');
 let oAuth2Client, authUrl;
+const PORT = process.env.PORT || 5000;
 app.use(cookieParser());
 //app.use(bodyParser.urlencoded({ extended: false }))
 const SCOPES = ['https://www.googleapis.com/auth/calendar.readonly'];
@@ -99,4 +100,4 @@ app.get('/ret', (req, res, next) => {
         listEvents(oAuth2Client, res);
     }
 });
-app.listen(5000);
+app.listen(PORT, () => { console.log('App running at ' + PORT) });
